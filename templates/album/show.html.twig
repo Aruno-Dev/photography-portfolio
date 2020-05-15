@@ -1,0 +1,45 @@
+{% extends 'user_base.html.twig' %}
+
+{% block body %}
+<div class="portfolio-opacity">
+    <section class="container-fluid mt-5 ">
+     <h1 class="text-dark text-center">{{ album.title}}</h1>
+        <div class="d-flex justify-content-between ">
+           
+            {% for image in images %}
+            
+                <div class="mt-5 w-100">
+                    <button type="button" class=" bg-transparent m-3 border-0 " data-toggle="modal" data-target=".bd-example-modal-xl-{{ image.id }}">
+                        <img src="{{ asset('uploads/images/' ~ image.Filename) }}" class=" w-100 " alt="{{ album.title ~ image.title}}">
+                    </button>
+                </div>
+                        
+                <div class="modal fade bd-example-modal-xl-{{ image.id }} " id="1" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-xl" role="image">
+                        <div class="modal-content">
+                            <img src="{{ asset('uploads/images/' ~ image.Filename) }}" class="img-thumbnail w-100 " alt="...">
+                            <div class="d-flex justify-content-between">
+                                <h2 class="ml-2">Comments</h2>
+                                <a href="{{path('image_comment', {'id': image.id})}}" class="mr-3 mt-3">Leave a comment</a>
+                            </div>
+                            <div class="container comments">
+                                            
+                                {% for comment in image.comments %}
+                                    <p class="text-dark font-weight-bold border-top mt-4">Posted by {{comment.email}} &bull; {{comment.createdAt|date('d/m/Y  H:i', 'Europe/Paris')}} :</p>
+                                    <p class="text-dark mb-2"> {{comment.content}}</p>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+            {% endfor %} 
+
+        </div>
+    </section>   
+   <div class="mr-2 ">
+       <a class="btn btn-secondary fixed-bottom" href="{{ path('portfolio')}}">Back</a>
+   </div>            
+</div>
+{% endblock %}
+ 

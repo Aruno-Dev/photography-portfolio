@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Arnaud TERRET | Dashboard{% endblock %}
+
+{% block body %}
+
+{% include 'includes/sidebar.html.twig' %}
+
+     <main role="main">
+          <div class="album bg-white">
+            <div class="container mt-5">
+              <div class="row">
+
+                  {% for album in albums %}
+                   
+                    <div class="card m-3 w-25 shadow text-light"
+                    {% if album.cover %}  
+                    style="background-image:url('{{asset('uploads/images/' ~ album.cover)}}');
+                           background-size:cover; background-position:center center')" 
+                    {% endif %} >
+                      <div class="row no-gutters">
+                        <div class="col-md-8">
+                          <div class="card-body">
+                            <h5 class="card-title {% if album.cover == null %}text-dark {% endif %}">{{ album.title }}</h5>
+                            <p class="card-text {% if album.cover == null %}text-dark {% endif %}">{{ album.text }}</p>
+                            <p class="card-text {% if album.cover == null %}text-dark {% endif %}"><small class="text-muted">Created the {{ album.createdAt|date('d/m/Y', 'Europe/Paris') }}</small></p>
+                          </div>
+                         <div class="d-flex d-flex-justify-content-around">
+                          <a class="btn btn-primary m-1" href="{{ path('admin_album_show', { 'id': album.id })}}">Browse</a>
+                          <a class="btn btn-danger m-1" href="{{ path('admin_album_delete', { 'id': album.id }) }}" onclick="
+                          event.preventDefault(); confirm('Are you sure ?') && document.getElementById('js-delete-album-form').submit();">Delete</a></p>
+                          <form id="js-delete-album-form" action="{{ path('admin_album_delete', { 'id': album.id }) }}" method="post" style="display:none;">
+                              <input type="hidden" name="_token" value="{{ csrf_token('secure_delete') }}"/>
+                              <input type="hidden" name="_method" value="DELETE"/>
+                          </form>
+                    </div>
+                        </div>
+                      </div>
+                    </div>
+                   
+
+                    {% endfor %}
+
+                </div>
+            </div>
+        </div>
+      </main>
+    </div>
+  </div>
+
+{% endblock %}

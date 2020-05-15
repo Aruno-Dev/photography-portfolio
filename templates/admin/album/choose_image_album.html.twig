@@ -1,0 +1,33 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Arnaud TERRET | Dashboard{% endblock %}
+
+{% block body %}
+
+{% include 'includes/sidebar.html.twig' %}
+
+    <main role="main">
+        <div class="container mt-5">
+        <h1>{{ album.title }}</h1><a class="btn btn-secondary m-1" href="{{ path('admin_album_show', { 'id': album.id })}}">Back to album</a>
+        <div class="row no-gutters">
+            
+                {% for image in images %}
+
+                <div class="col-md-6 ">
+                <a href="{{ path('admin_album_add_image', {'id': image.id,'album': album.id})}}" 
+                onclick=" return confirm('Add {{ image.title }} to album {{ album.title }} ?' );">
+                <div class="card m-2">
+                    <img src="{{ asset('uploads/images/' ~ image.Filename) }}" class="img-thumbnail w-100 " alt="...">
+                </div>
+                </a>
+                </div>
+
+                {% endfor %}
+
+            </div>
+        </div>
+    </main> 
+  </div>
+</div>
+
+{% endblock %}

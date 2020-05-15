@@ -1,0 +1,38 @@
+{% extends 'user_base.html.twig' %}
+
+{% block body %}
+<div class="container-fluid row justify-content-center mt-5">
+    <div class="col-md-4">
+        <h1 class="text-center">Login</h1>
+            <form class="form" action="" method="POST">
+                <div class="form-group">
+                    <label class="text-light" for="username">
+                    <i class="fas fa-user"></i>
+                    Username
+                    </label>
+                    <input type="text" class="form-control" id="username" placeholder="Username" name="_username" required autofocus>
+                </div>
+                <div class="form-group">
+                    <label class="text-light" for="password">
+                    <i class="fas fa-key"></i>
+                    Password
+                    </label>
+                    <input type="password" class="form-control" id="password"  placeholder="password" name="_password" required>
+                </div>
+                {% if error %}
+                
+<div class="alert alert-danger text-center">
+<p>Erreur lors de l'authentification</p>
+</div>
+                {% endif %}
+                <div class="text-center">
+                    <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-unlock"></i>
+                    Login
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock %}

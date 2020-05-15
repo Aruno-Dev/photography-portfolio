@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Arnaud TERRET | Dashboard{% endblock %}
+
+{% block body %}
+
+{% include 'includes/sidebar.html.twig' %}
+
+    <main role="main">
+        <div class="container mt-5">
+          <h1 class="h1 text-center">Editing image</h1>
+          <div class="row mt-5">
+            <div class="col">     
+              {{ include('admin/image/forms/_edit_form.html.twig', {'submitButtonText': 'update'})}}
+            </div>
+          </div>
+        </div>
+        <div class="container mt-5">
+          <h1 class="h1 text-center">Associated comments</h1>
+          <div class="row mt-5">
+            <div class="container ">
+              <div class="row">
+              <table class="table table-hover">
+                <thead class="thead-light">
+                  <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Author</th>
+                    <th scope="col">Email</th>
+                    <th scope="col">CreatedAt</th>
+                    <th scope="col">Content</th>
+                    <th scope="col">Options</th>
+                  </tr>
+                </thead>
+                <tbody>
+
+                {% for comment in image.comments %}
+
+                  <tr>
+                    <th scope="row">{{comment.id}}</th>
+                    <td>{{comment.author}}</td>
+                    <td><a href="mailto:{{comment.email}}">{{comment.email}}</a></td>
+                    <td>{{comment.createdAt|date('d/m/Y  H:i', 'Europe/Paris')}}</td>
+                    <td>{{comment.content}}</td>
+                    <td><a class="btn btn-danger m-1" href="{{ path('admin_commentary_delete', { 'id': comment.id }) }}" onclick="
+                        event.preventDefault(); confirm('Are you sure ?') && document.getElementById('js-delete-comment-form').submit();">Delete</a></p>
+                        <form id="js-delete-comment-form" action="{{ path('admin_commentary_delete', { 'id': comment.id }) }}" method="post" style="display:none;">
+                          <input type="hidden" name="_token" value="{{ csrf_token('secure_delete') }}"/>
+                          <input type="hidden" name="_method" value="DELETE"/>
+                        </form>
+                    </td>
+                  </tr>
+
+                  {% endfor %}
+
+                </tbody>
+              </table>
+                <!--
+                <div class="col border m-2">
+                  <p class="text-dark font-weight-bold">ID : </p>
+                  <p class="text-dark font-weight-bold">Posted by  &bull; </p>
+                  <p class="text-dark"> </p>
+                </div> 
+               -->
+              </div>
+            </div>        
+          </div>
+        </div>
+    </main> 
+ 
+
+{% endblock %}

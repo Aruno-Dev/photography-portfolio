@@ -1,0 +1,255 @@
+
+* {
+    box-sizing:border-box;
+  }
+
+  body{
+    background-color: white;
+    line-height: 1.6rem;
+    /*font-family: 'Ubuntu', sans-serif;font-family: 'Caveat', cursive;*/
+    font-family: 'Montserrat Alternates', sans-serif;
+    
+    min-width: 992px;
+}
+
+p{
+    font-size: 0.6rem;
+    color: white;
+}
+
+h1, h2, h3, h4, h5{
+    line-height: initial;
+}
+
+h1{
+    font-size: 2.4rem;
+    color: white;
+}
+
+h2{
+    color: #5271ff;
+    font-size: 2rem;
+}
+
+h3{
+    font-size: 1.6rem;
+}
+
+h4{
+    font-size: 1.4rem;
+}
+
+h5{
+    font-size: 2rem;
+    color: white;
+    margin-bottom: 25%;
+}
+
+.logo {
+    flex-basis: 400px;
+    font-size: 3.5rem;
+    padding: 0;
+}
+
+header{
+    background: black;
+    width: 100%;
+    height: 200px;
+}
+
+#canva-logo {
+    width: 70%;
+    height: auto;
+    margin-top: 15px;
+}
+
+.desktop {
+    margin-top:140px;
+}
+
+nav ul{
+    width: auto;
+    height: auto;
+}
+
+#page{
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+}
+
+main {
+    max-width: 100%;
+    height: auto;
+}
+/*
+.albums{
+
+    
+    
+    display: flex;
+    flex-flow: column nowrap;
+    background-color: black;
+    justify-content: space-between;
+    align-items: stretch;
+    align-content: center;
+  
+}
+
+.album {
+   
+    display:grid;
+    grid-template-columns: repeat(3, 1fr) ;
+    grid-template-rows: auto;
+    grid-template-areas: "none cover title "
+                         "none cover text ";
+    
+}
+
+.album-cover {
+    grid-area: cover;
+}
+
+.album-title {
+    background: lightgrey;
+    grid-area: title;
+}
+
+.album-text {
+    background: lightgrey;
+    grid-area: text;
+}
+*/
+.clickable div {
+   /* opacity: 0.8;*/
+   filter: saturate(100%);
+}
+
+.clickable div:hover {
+    opacity: 1;
+    /*margin: 2px;*/
+    letter-spacing: .2rem;
+    transition: all ease-in-out 0.4s;
+    color: #5271ff;
+    filter: saturate(0%);
+}
+
+button:focus {
+    outline: none;
+}
+
+.comment {
+    border:1px lightgrey solid
+}
+
+.comment h2 {
+    margin-bottom:10px
+}
+
+.comments p {
+    font-size: 1.6rem; 
+    line-height: 3rem;
+}
+
+.card-header {
+    padding: 0;
+}
+
+.col button {
+    opacity: 0.9;
+}
+
+.col button:hover {
+    opacity: 1;
+    margin: 10px;
+    image-rendering: smooth;
+    transition: all ease-in-out 0.4s;
+}
+
+.presta img{
+    width: 300px;
+    height: 300px;
+   
+}
+
+.presta a{
+    font-size: 2.4rem;
+    color:#5271ff ;
+}
+
+.presta p{
+    font-size: 1.5rem;
+    text-align: center;
+    line-height: 2rem;
+    letter-spacing: 3px;
+}
+
+.presta a:hover {
+    text-decoration: none;
+    color:white ;
+}
+
+.card {
+    background-color: black;
+}
+
+#top-btn{
+    display: none;
+}
+    
+.desktop li a div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    line-height: 48px;
+    top: 0;
+    left: 0;
+}
+
+.desktop li a {
+    position: relative;
+    display: block;
+    width: 160px;
+    text-align: center;
+    background: black;
+    color: white;
+}
+
+.desktop li a:hover {
+    color: #5271ff;
+    font-weight: bolder;
+    letter-spacing: .1rem;
+    /*transform: scale(1.1);
+    transform-origin: center;*/
+    transition: all ease-in-out 0.4s;
+    background: rgba(255, 255, 255, 0.2);
+}
+
+.slide-bck {
+    /*background: rgb(2,0,36);*/
+   /* background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(255,255,255,1) 0%, rgba(0,0,0,0.9556197478991597) 100%);*/
+    background: white;
+}
+
+.slide-opacity {
+    background: rgba(255,255,255,0.5);
+}
+
+.portfolio-bck {
+    /*background: rgb(2,0,36);
+    background: radial-gradient(circle, rgba(2,0,36,1) 0%, rgba(255,255,255,1) 10%, rgba(0,0,0,0.9556197478991597) 100%);
+    background: rgb(252,252,252);
+    background: -moz-linear-gradient(236deg, rgba(252,252,252,1) 0%, rgba(0,0,0,1) 100%);
+    background: -webkit-linear-gradient(236deg, rgba(252,252,252,1) 0%, rgba(0,0,0,1) 100%);
+    background: linear-gradient(236deg, rgba(252,252,252,1) 0%, rgba(0,0,0,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#fcfcfc",endColorstr="#000000",GradientType=1);*/
+    background-color: white;
+    
+}
+.portfolio-opacity {
+    background: white;
+    padding-top: 100px;
+}
+
+

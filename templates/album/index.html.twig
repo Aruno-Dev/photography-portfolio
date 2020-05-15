@@ -1,0 +1,31 @@
+{% extends 'user_base.html.twig' %}
+
+{% block body %}
+<div class="portfolio-opacity">
+<h1 class="text-center text-dark">PORTFOLIO</h1>
+  <section class="container-fluid mt-5  portfolio-bck p-4">
+    <div class='row ml-5'>
+    
+              {% for album in albums %}
+
+      <div class="col-4 text-center ">
+        <a class="clickable mx-auto" href="{{path('portfolio_show', {'id': album.id})}}" >
+          <div class="card bg-dark text-white w-75  mb-5 border-0 shadow">
+              <img id="test" src="{{ asset('uploads/images/' ~ album.cover ) }}" class="card-img" alt="album cover">
+              <div class="card-img-overlay">
+                <h5 class="card-title h1">{{ album.title }}</h5>
+                <p class="card-text">{{ album.text }}</p>
+              </div>
+            </div>
+        </a> 
+      </div>   
+
+              {% endfor %} 
+      
+    </div>  
+  </section>    
+</div>
+{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+{% endblock %}

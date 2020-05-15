@@ -1,0 +1,20 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Arnaud TERRET | Dashboard{% endblock %}
+
+{% block body %}
+
+{% include 'includes/sidebar.html.twig' %}
+
+    <main role="main">
+        <div class="container mt-5">
+         <h1 class="h1">Editing album - {{ album.title }}</h1>
+        <div class="row mt-5">
+                 {{ include('admin/album/forms/_edit_form.html.twig', {'submitButtonText': 'Update album'})}}
+            </div>
+        </div>
+    </main> 
+  </div>
+</div>
+
+{% endblock %}

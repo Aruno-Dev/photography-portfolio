@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Arnaud TERRET | Dashboard{% endblock %}
+
+{% block body %}
+
+{% include 'includes/sidebar.html.twig' %}
+
+    <main role="main">
+        <div class="container mt-5">
+        <h1>{{ album.title }}</h1><a class="btn btn-secondary m-1" href="{{ path('admin_album_choose_image', {'id': album.id})}}">Add images</a>
+        <a class="btn btn-dark m-1" href="{{ path('admin_album_edit', { 'id': album.id }) }}">Edit</a>
+            <div class="row mt-3">
+         
+               {% for image in images %}
+              
+                <div class="card w-25 m-4 shadow">
+                    <div class="card-body">
+                        <h5 class="card-title"><strong>Title :{{ image.title }}</strong>
+                         {% if album.cover == image.filename %}<span class="badge badge-primary ml-4">cover</span>{% endif %}
+                          </h5>
+                        <p class="card-text"><strong>Description : {{ image.text }}</strong> </p>
+                        <p class="card-text"><small class="text-muted"><strong>Filename :{{ image.filename }}</strong> </small></p>
+                    </div>
+                    <img src="{{ asset('uploads/images/' ~ image.Filename) }}" class="card-img-top img-thumbnail " alt="...">
+                    <div class="d-flex justify-content-center">
+                        {% if album.cover != image.filename %}
+                        <a class="btn btn-secondary m-1" href="{{ path('admin_album_set_cover', {'id': image.id})}}">Set as cover</a>
+                        {% endif %}
+                        <a class="btn btn-danger m-1" href="{{ path('admin_album_remove', {'id': image.id, 'album': album.id}) }}"
+                        onclick="return confirm('Remove image {{ image.title }} from album {{ album.title }} ?')">Remove</a></p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </main> 
+  </div>
+</div>
+
+{% endblock %}

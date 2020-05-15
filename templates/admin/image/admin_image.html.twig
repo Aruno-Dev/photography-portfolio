@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Arnaud TERRET | Dashboard{% endblock %}
+
+{% block body %}
+
+{% include 'includes/sidebar.html.twig' %}
+
+    <main role="main">
+        <div class="container mt-5">
+            <div class="row mt-5">
+                {% for image in images %}
+                <div class="card w-25 m-4">
+                    <div class="card-body">
+                        <h5 class="card-title"><strong>Title :</strong> {{ image.title }}</h5>
+                        <p class="card-text"><strong>Description :</strong> {{ image.text }}</p>
+                        <p class="card-text"><small ><strong>Album :</strong> {{image.album}}</small></p>
+                        <p class="card-text"><small class="text-muted"><strong>Filename :</strong> {{image.filename}}</small></p>
+                    </div>
+                    <img src="{{ asset('uploads/images/' ~ image.Filename) }}" class="card-img-top img-thumbnail " alt="...">
+                    <div class="d-flex justify-content-center">
+                        <a class="btn btn-secondary m-1" href="{{ path('admin_image_edit', { 'id': image.id }) }}">Edit</a>
+                        <a class="btn btn-danger m-1" href="{{ path('admin_image_delete', { 'id': image.id }) }}" onclick="
+                        event.preventDefault(); confirm('Are you sure ?') && document.getElementById('js-delete-image-form').submit();">Delete</a></p>
+                        <form id="js-delete-image-form" action="{{ path('admin_image_delete', { 'id': image.id }) }}" method="post" style="display:none;">
+                            <input type="hidden" name="_token" value="{{ csrf_token('secure_delete') }}"/>
+                            <input type="hidden" name="_method" value="DELETE"/>
+                        </form>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </main> 
+  </div>
+</div>
+
+{% endblock %}

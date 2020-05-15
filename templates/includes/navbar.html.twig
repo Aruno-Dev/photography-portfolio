@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-sm navbar-light fixed-top bg-light flex-md-nowrap p-0 shadow-sm">
+    <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="{{ path('home') }}">
+    <i><img class="mb-2 ml-4"src="{{ asset('/build/images/logo2.2868e752.png')}}"></i>
+    </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav px-3">
+      <li class="nav-item text-nowrap">
+        <a class="nav-link" href="{{ path('home') }}"> Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ path('contact') }}">Contact</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="{{ path('portfolio') }}">Portfolio</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav ml-auto">
+    {% if app.user %}
+    <div class="dropdown">
+  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {{app.user.username}} dashboard
+  </button>
+  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+    <a class="dropdown-item" href="{{path('admin_album')}}">Albums</a>
+    <a class="dropdown-item" href="{{path('admin_image')}}">Images</a>
+    <a class="dropdown-item" href="#">Something else here</a>
+    <a class="dropdown-item" href="{{ path('user_logout') }}">logout</a>
+  </div>
+</div>
+    {% else %}
+      <li class="nav-item">
+        <a class="nav-link" href="{{ path('user_login') }}">Login</a>
+      </li>
+    {% endif %}
+    </ul>
+  </form>
+  </div>
+</nav>
