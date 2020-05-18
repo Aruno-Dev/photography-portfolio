@@ -32,7 +32,7 @@ class Commentary
     private $createdAt;
 
     /**
-     * @ORM\ManyToOne(targetEntity="App\Entity\Image", inversedBy="comments", fetch="EAGER")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Image", inversedBy="comments", fetch="EAGER", cascade={"remove"})
      */
     private $image;
 

@@ -20,11 +20,10 @@
                     <img src="{{ asset('uploads/images/' ~ image.Filename) }}" class="card-img-top img-thumbnail " alt="...">
                     <div class="d-flex justify-content-center">
                         <a class="btn btn-secondary m-1" href="{{ path('admin_image_edit', { 'id': image.id }) }}">Edit</a>
-                        <a class="btn btn-danger m-1" href="{{ path('admin_image_delete', { 'id': image.id }) }}" onclick="
-                        event.preventDefault(); confirm('Are you sure ?') && document.getElementById('js-delete-image-form').submit();">Delete</a></p>
-                        <form id="js-delete-image-form" action="{{ path('admin_image_delete', { 'id': image.id }) }}" method="post" style="display:none;">
-                            <input type="hidden" name="_token" value="{{ csrf_token('secure_delete') }}"/>
-                            <input type="hidden" name="_method" value="DELETE"/>
+                       
+                        <form  action="{{ path('admin_image_delete', { 'id': image.id }) }}" method="post">
+                          <input type="hidden" name="_token" value="{{ csrf_token('secure_delete') }}"/>
+                          <button class="btn btn-danger m-1" type="submit" onclick="return confirm('Are you sure ?');" >Delete</button>
                         </form>
                     </div>
                 </div>

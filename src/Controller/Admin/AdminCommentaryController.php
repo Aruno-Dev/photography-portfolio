@@ -21,7 +21,7 @@ class AdminCommentaryController extends AbstractController
     }
 
     /**
-     * @Route("/admin/commentary/{id<[0-9]+>}/delete", name="admin_commentary_delete")
+     * @Route("/admin/commentary/{id<[0-9]+>}/delete", name="admin_commentary_delete", methods={"GET","POST"})
      */
     public function delete(Commentary $comment ,Request $request, EntityManagerInterface $manager)
     {
@@ -31,12 +31,13 @@ class AdminCommentaryController extends AbstractController
 
         if($this->isCsrfTokenValid('secure_delete', $submittedToken))
         {
+            
             $manager->remove($comment);
             $manager->flush();
 
             $this->addFlash('success', 'comment deleted successfully !');
+           
         }
-   
 
         return $this->redirectToRoute('admin_image_edit', ['id' => $image->getId()]);
        

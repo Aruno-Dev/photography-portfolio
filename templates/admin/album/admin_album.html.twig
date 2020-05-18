@@ -27,12 +27,10 @@
                           </div>
                          <div class="d-flex d-flex-justify-content-around">
                           <a class="btn btn-primary m-1" href="{{ path('admin_album_show', { 'id': album.id })}}">Browse</a>
-                          <a class="btn btn-danger m-1" href="{{ path('admin_album_delete', { 'id': album.id }) }}" onclick="
-                          event.preventDefault(); confirm('Are you sure ?') && document.getElementById('js-delete-album-form').submit();">Delete</a></p>
-                          <form id="js-delete-album-form" action="{{ path('admin_album_delete', { 'id': album.id }) }}" method="post" style="display:none;">
-                              <input type="hidden" name="_token" value="{{ csrf_token('secure_delete') }}"/>
-                              <input type="hidden" name="_method" value="DELETE"/>
-                          </form>
+                           <form  action="{{ path('admin_album_delete', { 'id': album.id }) }}" method="post">
+                          <input type="hidden" name="_token" value="{{ csrf_token('secure_delete') }}"/>
+                          <button class="btn btn-danger m-1" type="submit" onclick="return confirm('Are you sure ?');" >Delete</button>
+                        </form>
                     </div>
                         </div>
                       </div>

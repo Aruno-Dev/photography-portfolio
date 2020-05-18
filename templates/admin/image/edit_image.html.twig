@@ -41,11 +41,10 @@
                     <td><a href="mailto:{{comment.email}}">{{comment.email}}</a></td>
                     <td>{{comment.createdAt|date('d/m/Y  H:i', 'Europe/Paris')}}</td>
                     <td>{{comment.content}}</td>
-                    <td><a class="btn btn-danger m-1" href="{{ path('admin_commentary_delete', { 'id': comment.id }) }}" onclick="
-                        event.preventDefault(); confirm('Are you sure ?') && document.getElementById('js-delete-comment-form').submit();">Delete</a></p>
-                        <form id="js-delete-comment-form" action="{{ path('admin_commentary_delete', { 'id': comment.id }) }}" method="post" style="display:none;">
+                    <td>
+                        <form  action="{{ path('admin_commentary_delete', { 'id': comment.id }) }}" method="post">
                           <input type="hidden" name="_token" value="{{ csrf_token('secure_delete') }}"/>
-                          <input type="hidden" name="_method" value="DELETE"/>
+                          <button class="btn btn-danger m-1" type="submit" onclick="return confirm('Are you sure ?');" >Delete</button>
                         </form>
                     </td>
                   </tr>

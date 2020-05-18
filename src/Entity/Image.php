@@ -40,7 +40,7 @@ class Image
     private $album;
 
     /**
-     * @ORM\OneToMany(targetEntity="App\Entity\Commentary", mappedBy="image", fetch="EAGER")
+     * @ORM\OneToMany(targetEntity="App\Entity\Commentary", mappedBy="image", fetch="EAGER", cascade={"remove"})
      */
     private $comments;
 

@@ -89,12 +89,12 @@ class AdminAlbumController extends AbstractController
     }
 
     /**
-     * @Route("/admin/album/{id<[0-9]+>}/delete", name="admin_album_delete", methods={"DELETE"})
+     * @Route("/admin/album/{id<[0-9]+>}/delete", name="admin_album_delete", methods={"GET", "POST"})
      */
     public function deleteAlbum(Album $album, Request $request, EntityManagerInterface $manager)
     {
         $submittedToken = $request->request->get('_token');
-
+        
         if($this->isCsrfTokenValid('secure_delete', $submittedToken))
         {
             $images = $album->getImages();
@@ -167,7 +167,11 @@ class AdminAlbumController extends AbstractController
     {
 
        $id = $album->getId();
-       $album->setCover(null);
+       if($album->getCover() == $image->getFilename()){
+           
+        $album->setCover(null);
+       }
+      
        $image->setAlbum(null);
        $manager->flush();
      

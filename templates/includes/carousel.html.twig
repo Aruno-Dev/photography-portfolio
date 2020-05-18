@@ -10,8 +10,8 @@
 
         {% for image in images %}
         
-          <div class="carousel-item slide-opacity{% if image.id == 30  %} active {% endif %} ">
-            <img class="d-block w-50 mx-auto border border-dark " src="{{ asset('uploads/images/' ~ image.filename ) }}"   alt="{{image.id}}">
+          <div class="carousel-item slide-opacity{% if image.id == 36  %} active {% endif %} ">
+            <img class="d-block w-50 mx-auto rounded border border-white " src="{{ asset('uploads/images/' ~ image.filename ) }}"   alt="{{image.id}}">
           </div> 
 
         {% endfor %}

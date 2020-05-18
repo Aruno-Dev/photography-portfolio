@@ -102,7 +102,7 @@ class AdminImageController extends AbstractController
     }
 
     /**
-     * @Route("/admin/image/{id<[0-9]+>}/delete", name="admin_image_delete", methods={"DELETE"})
+     * @Route("/admin/image/{id<[0-9]+>}/delete", name="admin_image_delete", methods={"POST", "GET"})
      */
     public function deleteImage(Image $image, Request $request, EntityManagerInterface $manager)
     {
@@ -110,6 +110,7 @@ class AdminImageController extends AbstractController
 
         if($this->isCsrfTokenValid('secure_delete', $submittedToken))
         {
+            
             $manager->remove($image);
             $manager->flush();
 
