@@ -15,7 +15,7 @@
                    
                     <div class="card m-3 w-25 shadow text-light"
                     {% if album.cover %}  
-                    style="background-image:url('{{asset('uploads/images/' ~ album.cover)}}');
+                    style="background-image:url('/uploads/images/{{album.cover}}');
                            background-size:cover; background-position:center center')" 
                     {% endif %} >
                       <div class="row no-gutters">

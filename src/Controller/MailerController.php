@@ -5,16 +5,11 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Mailer\MailerInterface;
-use Symfony\Component\Mailer\Transport\Smtp\EsmtpTransport;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Mailer\Mailer;
 use App\Form\ContactType;
+use App\Repository\AlbumRepository;
 use Symfony\Bridge\Twig\Mime\TemplatedEmail;
 use Symfony\Component\Mime\Address;
-use Symfony\Component\Mime\Email;
-use Symfony\Bridge\Twig\Mime\BodyRenderer;
-use Twig\Environment;
-use Twig\Loader\FilesystemLoader;
 
 class MailerController extends AbstractController
 {
@@ -22,9 +17,9 @@ class MailerController extends AbstractController
     /**
     * @Route("/contact", name="contact", methods={"POST", "GET"})
     */
-    public function contact(Request $request, MailerInterface $mailer ){
+    public function contact(Request $request, MailerInterface $mailer, AlbumRepository $albumRepo ){
 
-        
+        $albums = $albumRepo->findAll();
         $form = $this->createForm(ContactType::class);
         $form->handleRequest($request);
 
@@ -39,19 +34,20 @@ class MailerController extends AbstractController
             }
             else
             {
-                $this -> addFlash('danger', 'A probem occured. Please try later.');
+                $this -> addFlash('danger', 'A problem occured. Please try later.');
+                return $this->redirectToRoute("contact");
             }
         }
         
         return $this->render('home/contact.html.twig', [
-            'form' => $form->createView()
+            'form'       => $form->createView(),
+            'albums'     => $albums,
+            'controller' => 'contact',
         ]);
     }
 
-    
     public function sendEmail($data, MailerInterface $mailer)
     {
-        
         $email = (new TemplatedEmail())
                 ->from($data['Email'])
                 ->to(new Address('arnaud.terret@gmail.com'))
@@ -61,27 +57,53 @@ class MailerController extends AbstractController
                 //->text($data['Message']);
                 ->htmlTemplate('/home/emails/contact_email.html.twig')
                 ->context([
-                    'sender' => $data['Email'],
+                    'sender'  => $data['Email'],
                     'subject' => $data['Subject'],
                     'message' => $data['Message']
                 ])
                 ;
 
-            $mailer->send($email);
+        $mailer->send($email);
 
-                $this->addFlash('success', 'email sent successfully !');
-                
+        $this->addFlash('success', 'email sent successfully !');
 
-                return $this->redirectToRoute('contact');
+        return $this->redirectToRoute('contact');
     
         if($mailer -> send($email))
         {
             return true;
-        }
-        else
-        {
+        }else{
             return false;
         }
     }
-    
+
+//AJAX under-construction route
+     /**
+     * @Route("/contact/post", name="post_message", methods={"POST"})
+     */
+    /*
+    public function post(Request $request, MailerInterface $mailer)
+    {
+            $form = $this->createForm(ContactType::class);
+            $form->submit($request->request->get('contact'));
+
+            try{
+                
+                $data = $form -> getData();
+                $this -> sendEmail($data, $mailer);
+                $message =  $this -> addFlash('success', 'Your message has been sent successfully');
+  
+                return new JsonResponse([
+                    'success' => true, 
+                    'message' =>  $message->renderView('includes/partials/_flash_messages.html.twig')]);
+            }catch(Exception $e){
+                $message = $e->getMessage();
+                return new JsonResponse([
+                    'success' => false,
+                    'message' => $message->renderView('includes/partials/_flash_messages.html.twig')]);
+                    ]);
+            }
+    }
+ */   
+   
 }

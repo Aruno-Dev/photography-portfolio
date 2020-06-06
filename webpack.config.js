@@ -24,10 +24,16 @@ Encore
      * and one CSS file (e.g. app.css) if your JavaScript imports CSS.
      */
     .addEntry('app', './assets/js/app.js')
-    .addEntry('reset', './assets/js/reset.js')
-    .addEntry('screen', './assets/js/screen.js')
-    .addEntry('style_burger', './assets/js/style_burger.js')
-    .addEntry('index', './assets/js/index.js')
+    //.addEntry('style', './assets/js/style.js')
+    //.addEntry('assets', './assets/js/assets.js')
+    //.addEntry('blog', './assets/js/blog.js')
+    //.addEntry('font', './assets/js/font.js')
+    //.addEntry('plugins', './assets/js/plugins.js')
+    //.addEntry('portfolio', './assets/js/portfolio.js')
+    //.addEntry('scripts', './assets/js/scripts.js')
+    //.addEntry('shortcodes', './assets/js/shortcodes.js')
+    //.addEntry('showcase', './assets/js/showcase.js')
+    //.addEntry('index', './assets/js/index.js')
     
     //.addEntry('page1', './assets/js/page1.js')
     //.addEntry('page2', './assets/js/page2.js')

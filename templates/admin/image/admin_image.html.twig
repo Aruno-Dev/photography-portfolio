@@ -17,7 +17,7 @@
                         <p class="card-text"><small ><strong>Album :</strong> {{image.album}}</small></p>
                         <p class="card-text"><small class="text-muted"><strong>Filename :</strong> {{image.filename}}</small></p>
                     </div>
-                    <img src="{{ asset('uploads/images/' ~ image.Filename) }}" class="card-img-top img-thumbnail " alt="...">
+                    <img src=" /uploads/images/{{image.Filename}}" class="card-img-top img-thumbnail " alt="...">
                     <div class="d-flex justify-content-center">
                         <a class="btn btn-secondary m-1" href="{{ path('admin_image_edit', { 'id': image.id }) }}">Edit</a>
                        

@@ -1,7 +1,0 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-        <div class="d-flex justify-content-between">
-            <a class="btn btn-primary mt-2" href="{{path('portfolio_show', {'id': album.id})}}">Cancel</a>
-            <input class="btn btn-success mt-2" type="submit" value="{{ submitButtonText }}" formnovalidate/>
-        </div>
-{{ form_end(form) }}

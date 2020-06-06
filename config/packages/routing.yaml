@@ -1,3 +1,7 @@
 framework:
     router:
         utf8: true
+
+
+#_liip_imagine:
+#    ressource: "@LiipImagineBundle/Ressources/config/routing.xml"

@@ -2,10 +2,10 @@
 
 namespace App\Controller;
 
+use App\Repository\AlbumRepository;
 use App\Repository\ImageRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
-
 
 class HomeController extends AbstractController
 {
@@ -13,19 +13,28 @@ class HomeController extends AbstractController
      *  @Route("/")
      * @Route("/home", name="home")
      */
-    public function index(ImageRepository $imageRepo)
+    public function index(AlbumRepository $albumRepo, ImageRepository $imageRepo)
     {
-        $numberOfImages = count($imageRepo->findAll());
-        $images = $imageRepo->FindThreeDesc();
+        $albums = $albumRepo->FindAllDesc();
+        $images = $imageRepo->FindAllDesc();
       
         return $this->render('home/index.html.twig', [
-            'controller_name' => 'HomeController',
-            'numberOfImages' => $numberOfImages,
-            'images' => $images
-            
+            'controller' => 'home',
+            'albums'     => $albums,
+            'images'     => $images
         ]);
     }
 
-
-    
+    /**
+     *  
+     * @Route("/about", name="about")
+     */
+    public function about(AlbumRepository $albumRepo)
+    {
+        $albums = $albumRepo->FindAllDesc();
+        return $this->render('home/about.html.twig', [
+            'controller' => 'home',
+            'albums'     => $albums
+        ]);
+    }
 }

@@ -1,7 +1,22 @@
-{{ form_start(form) }}
-    {{ form_widget(form) }}
-        <div class="d-flex justify-content-between">
 
-            <input class="btn btn-success mt-2" type="submit" value="{{ submitButtonText }}" formnovalidate/>
-        </div>
-{{ form_end(form) }}
+    <!-- Row -->
+    <div class="text-align-center border-2 border-dark pt-5 pb-5">
+       <form name="contact" method="post">
+            <div class="form-group">  
+                  
+                <div class="form-group"><label for="contact_Email" class="required text-dark">Your Email</label><input type="text" id="contact_Email" name="contact[Email]" required="required" autofocus="autofocus" class="form-control"></div>
+            </div>                                                        
+            <div class="form-group">
+                <div class="form-group"><label for="contact_Subject" class="required text-dark">Subject</label><input type="text" id="contact_Subject" name="contact[Subject]" required="required" class="form-control"></div>
+            </div>                            
+            <div class="form-group">
+                <div class="form-group"><label for="contact_Message" class="required text-dark">Your Message</label><textarea id="contact_Message" name="contact[Message]" required="required" class="form-control"></textarea></div>
+            </div>                             
+                        <div class="container">
+            <button class="btn btn-forest send_message" type="submit" id="submitMessage">Send</button>
+            </div>
+        <input type="hidden" id="contact__token" name="contact[_token]" value="KHAyra2uC3njyCvEja1l-8xZudUp3L5KQ-OsTKPNyc0"></form>
+    </div>
+    <!--/Row -->
+
+   

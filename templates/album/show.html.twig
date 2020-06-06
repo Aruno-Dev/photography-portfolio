@@ -1,45 +1,84 @@
 {% extends 'user_base.html.twig' %}
 
 {% block body %}
-<div class="portfolio-opacity">
-    <section class="container-fluid mt-5 ">
-     <h1 class="text-dark text-center">{{ album.title}}</h1>
-        <div class="d-flex justify-content-between ">
+ 
+  <div class="wrapper image-wrapper bg-image inverse-text" data-image-src="/uploads/images/{{ album.cover }}" data-aos="fade">
+    <div class="container inner pt-120 pb-120 text-center">
+      <h1 class="heading">{{ album.title }}</h1>
+      <p class="lead larger text-center mb-0">{{ album.text }}</p>
+    </div>
+    <!-- /.container --> 
+  </div>
+  <!-- /.wrapper -->
+  <div class="wrapper light-wrapper">
+        <div class="space30"></div>
+        <div class="clearfix"></div>
+        <div id="cube-grid-mosaic" class="cbp light-gallery">
+        
+            {% for item in collection %}
            
-            {% for image in images %}
-            
-                <div class="mt-5 w-100">
-                    <button type="button" class=" bg-transparent m-3 border-0 " data-toggle="modal" data-target=".bd-example-modal-xl-{{ image.id }}">
-                        <img src="{{ asset('uploads/images/' ~ image.Filename) }}" class=" w-100 " alt="{{ album.title ~ image.title}}">
-                    </button>
-                </div>
-                        
-                <div class="modal fade bd-example-modal-xl-{{ image.id }} " id="1" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-xl" role="image">
-                        <div class="modal-content">
-                            <img src="{{ asset('uploads/images/' ~ image.Filename) }}" class="img-thumbnail w-100 " alt="...">
-                            <div class="d-flex justify-content-between">
-                                <h2 class="ml-2">Comments</h2>
-                                <a href="{{path('image_comment', {'id': image.id})}}" class="mr-3 mt-3">Leave a comment</a>
-                            </div>
-                            <div class="container comments">
-                                            
-                                {% for comment in image.comments %}
-                                    <p class="text-dark font-weight-bold border-top mt-4">Posted by {{comment.email}} &bull; {{comment.createdAt|date('d/m/Y  H:i', 'Europe/Paris')}} :</p>
-                                    <p class="text-dark mb-2"> {{comment.content}}</p>
-                                {% endfor %}
-                            </div>
+            <div class="cbp-item" id="image-item{{ item.image.id }}">
+                <figure class="overlay overlay2">
+                    <a href="/uploads/images/{{ item.image.filename }}" data-sub-html="#caption{{loop.index}}"><img src="/uploads/images/{{ item.image.filename }}" alt="image {{ item.image.id ~ 'in' ~ album.title }}" />
+                        <div id="caption{{loop.index}}" class="d-none">
+                           <div class="imageform d-none fixed-top inverse-text"></div>
+                          <div class="d-flex justify-content-around">
+                            <h2 class="ml-2">
+                              {{ item.image.comments|length }} Comment{% if item.image.comments|length > 1 %}s{% endif %} 
+                              <p class="clickable-link mr-3 mt-3 "  onclick="openComments( {{item.image.id }},false);" >
+                                <span class="show badge bg-brown "></span>
+                              </p>
+                            </h2>
+                            <p class="mx-auto">{{ item.image.text }}</p>
+                             <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2F127.0.0.1%3A8000%2Fportfolio%2F20%2Fshow&layout=button&size=small&width=81&height=20&appId"  width="80" height="21" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+                          </div>
+                            
                         </div>
-                    </div>
-                </div>
-            
-            {% endfor %} 
+                        <!--/Caption-->
+                    </a>
+                </figure>
+            </div>
+            <!--/.cbp-item -->
 
+            {% endfor %}
+           
         </div>
-    </section>   
-   <div class="mr-2 ">
-       <a class="btn btn-secondary fixed-bottom" href="{{ path('portfolio')}}">Back</a>
-   </div>            
-</div>
+        <!--/.cbp --> 
+       <div class="space30"></div>
+       <div class="text-right mr-3">
+        <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2F127.0.0.1%3A8000%2Fportfolio%2F20%2Fshow&layout=button&size=small&width=81&height=20&appId"  width="80" height="21" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+      </div>
+      <div class="wrapper dark-wrapper pt-5">
+        <div class="container pt-5">
+          <div class="row">
+            <div class="col-12" id="display">
+              <div class="space30"></div>
+                <section class="d-flex justify-content-between" >
+                  <div class="container" >
+                    <h4 class="text-warning">{{ comments|length }} Comment{% if comments|length > 1 %}s{% endif %}</h4>
+                    <div id="album-comments">
+                      {% for comment in comments %}
+                        {{ include('comments/comment.html.twig') }}
+                      {% endfor %}
+                    </div>
+                  </div>
+                  <div class="container">
+                       {% include '/comments/forms/form.html.twig' with { type:'album'} %}
+                  </div>
+                </section>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="comments" style="display:none">
+        <h4 class="text-warning">Comments<span><i class="fas fa-times close text-light" style="cursor:pointer"></i></span></h4>
+        <div id="comments-list">
+        </div>
+    </div>
+    <!-- /.wrapper -->
+
 {% endblock %}
+
+
  

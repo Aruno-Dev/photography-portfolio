@@ -34,11 +34,7 @@ class ImageRepository extends ServiceEntityRepository
         ->setMaxResults(3)
         ->getQuery()
         ->getResult();
-
     }
-
-    
-
 
     // /**
     //  * @return Image[] Returns an array of Image objects

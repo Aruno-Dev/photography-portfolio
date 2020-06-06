@@ -36,7 +36,16 @@
               Add new image
             </a>
           </li>
-          <a class="btn btn-danger" href="{{ path('user_logout') }}">logout</a>
+
+          <li class="nav-item mt-2 ">
+            <a class="nav-link font-weight-bold {% if controller_name == 'AdminCommentController' %} font-italic text-danger{% endif %}" href="{{path('admin_comment')}}">
+              <span data-feather="images"></span>
+              
+              <i class="far fa-comments"></i>
+              Comments
+              
+            </a>
+          <a class="btn btn-danger mt-5 ml-3" href="{{ path('user_logout') }}">logout</a>
         </ul>
       </div>
     </nav>

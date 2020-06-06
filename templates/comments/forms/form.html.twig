@@ -1,0 +1,26 @@
+<div class="container text-dark inverse-text">
+      <form method="post" id="{{type}}CommentForm">
+      
+            <div class="form-group">
+                  <label for="comment_email" class="required">Your email</label>
+                  <input type="email"  name="comment[email]" required="required" maxlength="255" class="form-control input" id="{{ type }}_comment_email">
+                  <span class="text-danger emailError"></span>
+            </div>
+            <div class="form-group">
+                  <label for="comment_author" class="required">Your name</label>
+                  <input type="text"  name="comment[author]" required="required" maxlength="255" class="form-control input" id="{{ type }}_comment_author">
+                  <span class="text-danger nameError"></span>
+            </div>
+            <div class="form-group">
+                  <label for="comment_content" class="required">Your comment</label>
+                  <textarea  name="comment[content]" required="required" class="form-control input" id="{{ type }}_comment_content" minlength="1" maxlength="255" oninput="remainingCharacters('{{type}}');"></textarea>
+                  <span class="text-muted textareaControl" id="{{type}}commentTextarea"><span class="text-danger commentError"></span></span>
+            </div>
+
+           {% if type == 'album' %} <input class="album" type="hidden" name="comment[album]" value="{{album.id}}">{% endif %}
+            <input class="image" type="hidden" name="comment[image]" value="{{image.id|default('')}}">
+
+            <button class="btn btn-yellow mt-2 post" type="button" data-type="{{type}}">Post comment</button>
+               
+      </form>
+</div>

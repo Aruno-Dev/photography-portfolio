@@ -17,7 +17,7 @@
                 <a href="{{ path('admin_album_add_image', {'id': image.id,'album': album.id})}}" 
                 onclick=" return confirm('Add {{ image.title }} to album {{ album.title }} ?' );">
                 <div class="card m-2">
-                    <img src="{{ asset('uploads/images/' ~ image.Filename) }}" class="img-thumbnail w-100 " alt="...">
+                    <img src="/uploads/images/{{ image.Filename }}" class="img-thumbnail w-100 " alt="...">
                 </div>
                 </a>
                 </div>

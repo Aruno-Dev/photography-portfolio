@@ -1,31 +1,53 @@
 {% extends 'user_base.html.twig' %}
 
 {% block body %}
-<div class="portfolio-opacity">
-<h1 class="text-center text-dark">PORTFOLIO</h1>
-  <section class="container-fluid mt-5  portfolio-bck p-4">
-    <div class='row ml-5'>
-    
-              {% for album in albums %}
 
-      <div class="col-4 text-center ">
-        <a class="clickable mx-auto" href="{{path('portfolio_show', {'id': album.id})}}" >
-          <div class="card bg-dark text-white w-75  mb-5 border-0 shadow">
-              <img id="test" src="{{ asset('uploads/images/' ~ album.cover ) }}" class="card-img" alt="album cover">
-              <div class="card-img-overlay">
-                <h5 class="card-title h1">{{ album.title }}</h5>
-                <p class="card-text">{{ album.text }}</p>
-              </div>
-            </div>
-        </a> 
-      </div>   
+  {% for album in albums %}
 
-              {% endfor %} 
+  <div class="wrapper image-wrapper h-100-less bg-image inverse-text box-shadow light-gallery" data-image-src="/uploads/images/{{ album.cover }}" style="background-image: url('/uploads/images/{{ album.cover }}');">
+    <div class="container-fluid h-100">
+      <div class="row h-100">
+        <div class="col-12 my-auto text-center">
+          <div class="container mx-auto">
+            <h1 class="heading">{{ album.title }}</h1>
+            <p class="lead larger">{{ album.text }}</p>
+            <div class="space10"></div>
+            <a href="/uploads/images/{{ album.cover }}" class="btn btn-full-rounded btn-white">See Gallery</a>
+            <ul class="d-none">
+
+              {% for image in album.images %}
+                {% if image.filename != album.cover %}
+
+              <li><a href="/uploads/images/{{ image.filename }}"></a></li>
+ 
+                {% endif %}
+              {% endfor %}
+            
+            </ul>
+            <!-- /.d-none --> 
+          </div>
+          <!-- /.container --> 
+        </div>
+        <!-- /column --> 
+      </div>
+      <!-- /.row --> 
+    </div>
+    <!-- /.container-fluid --> 
+  </div>
+  <!-- /.wrapper -->
+                  
+  {% endfor %} 
+           
+             
+             
+
+            
+            
+           
+
+ 
       
-    </div>  
-  </section>    
-</div>
 {% endblock %}
 {% block javascripts %}
-{{ parent() }}
+
 {% endblock %}
