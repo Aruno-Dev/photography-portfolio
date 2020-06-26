@@ -36,6 +36,15 @@ class ImageRepository extends ServiceEntityRepository
         ->getResult();
     }
 
+    public function FindByAlbum()
+    {
+        return $this->createQueryBuilder('image')
+        ->orderBy('image.album')
+        ->getQuery()
+        ->getResult();
+    }
+
+
     // /**
     //  * @return Image[] Returns an array of Image objects
     //  */

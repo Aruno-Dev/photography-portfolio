@@ -6,6 +6,8 @@ use App\Repository\AlbumRepository;
 use App\Repository\ImageRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Service\QuotesService;
+
 
 class HomeController extends AbstractController
 {
@@ -17,7 +19,6 @@ class HomeController extends AbstractController
     {
         $albums = $albumRepo->FindAllDesc();
         $images = $imageRepo->FindAllDesc();
-      
         return $this->render('home/index.html.twig', [
             'controller' => 'home',
             'albums'     => $albums,
@@ -29,12 +30,13 @@ class HomeController extends AbstractController
      *  
      * @Route("/about", name="about")
      */
-    public function about(AlbumRepository $albumRepo)
+    public function about(AlbumRepository $albumRepo, QuotesService $quotes)
     {
         $albums = $albumRepo->FindAllDesc();
         return $this->render('home/about.html.twig', [
             'controller' => 'home',
-            'albums'     => $albums
+            'albums'     => $albums,
+            'quotes'     => $quotes->quotes
         ]);
     }
 }

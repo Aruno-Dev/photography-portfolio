@@ -13,11 +13,11 @@
             </div>
             <div class="form-group">
                   <label for="comment_content" class="required">Your comment</label>
-                  <textarea  name="comment[content]" required="required" class="form-control input" id="{{ type }}_comment_content" minlength="1" maxlength="255" oninput="remainingCharacters('{{type}}');"></textarea>
+                  <textarea  name="comment[content]" required="required" class="form-control input" id="{{ type }}_comment_content" minlength="1" maxlength="255" oninput="remainingCharacters('{{ type }}');"></textarea>
                   <span class="text-muted textareaControl" id="{{type}}commentTextarea"><span class="text-danger commentError"></span></span>
             </div>
 
-           {% if type == 'album' %} <input class="album" type="hidden" name="comment[album]" value="{{album.id}}">{% endif %}
+            {% if type == 'album' %} <input class="album" type="hidden" name="comment[album]" value="{{album.id}}">{% endif %}
             <input class="image" type="hidden" name="comment[image]" value="{{image.id|default('')}}">
 
             <button class="btn btn-yellow mt-2 post" type="button" data-type="{{type}}">Post comment</button>

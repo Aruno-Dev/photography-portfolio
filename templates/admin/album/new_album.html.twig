@@ -1,20 +1,20 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin_base.html.twig' %}
 
 {% block title %}Arnaud TERRET | Dashboard{% endblock %}
 
 {% block body %}
 
-{% include 'includes/sidebar.html.twig' %}
-
-    <main role="main">
-        <div class="container mt-5">
-         <h1 class="h1">Adding an album</h1>
-        <div class="row mt-5">
-                {{ include('admin/album/forms/_add_form.html.twig', {'submitButtonText': 'Add album'})}}
+<main class="wrapper light-wrapper">
+    <div class="container inner">
+        <div class="row">
+            <div class="col-lg-10 offset-lg-1 col-xl-8 offset-xl-2">
+                <h1 class="h1 text-center">Adding an album</h1>
+                <div>
+                    {{ include('admin/album/forms/_add_form.html.twig', {'submitButtonText': 'Add album'})}}
+                </div>
             </div>
         </div>
-    </main> 
-  </div>
-</div>
+    </div>
+</main> 
 
 {% endblock %}

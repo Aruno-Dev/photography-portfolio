@@ -29,8 +29,6 @@ class ImageController extends AbstractController
            $manager->persist($comment);
            $manager->flush();
 
-            $this->addFlash('success', 'Comment added successfully !');
-
             return $this->redirectToRoute('portfolio_show', ['id' => $album->getId()]);
         }
 

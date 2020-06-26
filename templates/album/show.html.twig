@@ -19,20 +19,19 @@
            
             <div class="cbp-item" id="image-item{{ item.image.id }}">
                 <figure class="overlay overlay2">
-                    <a href="/uploads/images/{{ item.image.filename }}" data-sub-html="#caption{{loop.index}}"><img src="/uploads/images/{{ item.image.filename }}" alt="image {{ item.image.id ~ 'in' ~ album.title }}" />
+                    <a href="/uploads/images/{{ item.image.filename }}" data-sub-html="#caption{{loop.index}}"><img src="/uploads/images/{{ item.image.filename }}" class="p-2" alt="image {{ item.image.id ~ 'in' ~ album.title }}" />
                         <div id="caption{{loop.index}}" class="d-none">
                            <div class="imageform d-none fixed-top inverse-text"></div>
                           <div class="d-flex justify-content-around">
                             <h2 class="ml-2">
-                              {{ item.image.comments|length }} Comment{% if item.image.comments|length > 1 %}s{% endif %} 
+                             <span id="image-comments-length">{{ item.image.comments|length }}</span> Comment{% if item.image.comments|length > 1 %}s{% endif %} 
                               <p class="clickable-link mr-3 mt-3 "  onclick="openComments( {{item.image.id }},false);" >
-                                <span class="show badge bg-brown "></span>
+                                <span class="show badge bg-brown ">Show comments</span>
                               </p>
                             </h2>
                             <p class="mx-auto">{{ item.image.text }}</p>
                              <iframe src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2F127.0.0.1%3A8000%2Fportfolio%2F20%2Fshow&layout=button&size=small&width=81&height=20&appId"  width="80" height="21" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
                           </div>
-                            
                         </div>
                         <!--/Caption-->
                     </a>
@@ -55,7 +54,7 @@
               <div class="space30"></div>
                 <section class="d-flex justify-content-between" >
                   <div class="container" >
-                    <h4 class="text-warning">{{ comments|length }} Comment{% if comments|length > 1 %}s{% endif %}</h4>
+                    <h4 class="text-warning"><span id="album-comments-length">{{ comments|length }}</span> Comment{% if comments|length > 1 %}s{% endif %}</h4>
                     <div id="album-comments">
                       {% for comment in comments %}
                         {{ include('comments/comment.html.twig') }}
@@ -71,12 +70,12 @@
         </div>
       </div>
     </div>
+    <!-- /.wrapper -->
     <div id="comments" style="display:none">
         <h4 class="text-warning">Comments<span><i class="fas fa-times close text-light" style="cursor:pointer"></i></span></h4>
         <div id="comments-list">
         </div>
     </div>
-    <!-- /.wrapper -->
 
 {% endblock %}
 

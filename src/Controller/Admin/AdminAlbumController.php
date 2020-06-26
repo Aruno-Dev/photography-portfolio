@@ -13,7 +13,8 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use App\Form\AlbumType;
-
+use Exception;
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 class AdminAlbumController extends AbstractController
 {
@@ -23,7 +24,7 @@ class AdminAlbumController extends AbstractController
     public function index(AlbumRepository $albums): Response
     {
         return $this->render('admin/album/admin_album.html.twig', [
-            'controller_name' => 'AdminAlbumController',
+            'controller'      => 'ALBUMS',
             'albums'          => $albums->FindAllDesc()
         ]);
     }
@@ -42,12 +43,10 @@ class AdminAlbumController extends AbstractController
             $manager->persist($album);
             $manager->flush();
 
-            $this->addFlash('success', 'Album added successfully !');
-
             return $this->redirectToRoute('admin_album');
         }
         return $this->render('admin/album/new_album.html.twig', [
-            'controller_name' => 'AdminAlbumController',
+            'controller'      => 'ALBUMS',
             'form'            => $form->createView()
         ]);
     }
@@ -65,13 +64,11 @@ class AdminAlbumController extends AbstractController
             $manager->persist($album);
             $manager->flush();
 
-            $this->addFlash('success', 'Album updated successfully !');
-
             return $this->redirectToRoute('admin_album_show', ['id' => $album->getId()]);
         }
 
         return $this->render('admin/album/edit_album.html.twig', [
-            'controller_name' => 'AdminAlbumController',
+            'controller'      => 'ALBUMS',
             'album'           => $album,
             'form'            => $form->createView() 
         ]);
@@ -93,12 +90,38 @@ class AdminAlbumController extends AbstractController
             
             $manager->remove($album);
             $manager->flush();
-
-            $this->addFlash('success', 'Album deleted successfully !');
+            
         }
         return $this->redirectToRoute('admin_album');
     }
 
+    /**
+     * @Route("/admin/album/{id<[0-9]+>}/erase", name="admin_album_erase", methods={"POST"})
+     */
+    public function eraseAlbum(Album $album, AlbumRepository $albumRepo, EntityManagerInterface $manager)
+    {
+       try{
+            $images = $album->getImages();
+            foreach($images as $image){
+                $image->setAlbum(null);
+            }
+            $manager->remove($album);
+            $manager->flush();
+            return new JsonResponse([
+                'success' => true, 
+                'view'    =>  $this->renderView('admin/album/album_list.html.twig', [
+                    'albums'    =>$albumRepo->FindAllDesc()
+                ])
+            ]);
+            
+        }catch(Exception $e){
+            return new JsonResponse([
+                'success' => false,
+                'message' => $e->getMessage() 
+                ]);
+        }
+    }
+    
      /**
      * @Route("/admin/album/{id<[0-9]+>}/show", name="admin_album_show")
      */
@@ -106,7 +129,7 @@ class AdminAlbumController extends AbstractController
     {
         $images = $album->getImages();
         return $this->render('admin/album/show_album.html.twig',[
-            'controller_name' => 'AdminAlbumController',
+            'controller'      => 'ALBUMS',
             'album'           => $album,
             'images'          => $images
         ]);
@@ -118,7 +141,7 @@ class AdminAlbumController extends AbstractController
     public function chooseImage(Album $album, ImageRepository $images)
     {
         return $this->render('admin/album/choose_image_album.html.twig',[
-            'controller_name' => 'AdminAlbumController',
+            'controller'      => 'ALBUMS',
             'album'           => $album,
             'images'          => $images->FindAllDesc()
         ]);
@@ -142,14 +165,13 @@ class AdminAlbumController extends AbstractController
     {
        $id = $album->getId();
        if($album->getCover() == $image->getFilename()){
-           
             $album->setCover(null);
        }
       
        $image->setAlbum(null);
        $manager->flush();
      
-       return $this->redirectToRoute('admin_album_show', ['id' => $id]);
+       return $this->redirectToRoute('admin_album_show', ['id' => $id, 'controller' => 'ALBUMS',]);
     }
 
     /**
@@ -161,6 +183,6 @@ class AdminAlbumController extends AbstractController
        $album->setCover($image->getFilename());
        $manager->flush();
      
-       return $this->redirectToRoute('admin_album');
+       return $this->redirectToRoute('admin_album', ['controller' => 'ALBUMS',]);
     }
 }

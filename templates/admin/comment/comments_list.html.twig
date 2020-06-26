@@ -1,0 +1,34 @@
+<table class="table table-hover ">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Album</th>
+            <th scope="col">Image</th>
+            <th scope="col">Author</th>
+            <th scope="col">Email</th>
+            <th scope="col">PostedAt</th>
+            <th scope="col">Content</th>
+            <th scope="col">Options</th>
+        </tr>
+    </thead>
+    <tbody>
+             
+  {% for comment in comments %}
+                   
+        <tr>
+            <th scope="row">{{comment.id}}</th>
+            <th scope="row"> {% if comment.album != null %}{{comment.album}}{% else %}<i class="fas fa-slash ml-3"></i> {% endif %}</th>
+            <th scope="row"> {% if comment.image != null %}{{comment.image}}{% else %}<i class="fas fa-slash ml-3"></i>    {% endif %}</th>
+            <td>{{comment.author}}</td>
+            <td><a href="mailto:{{comment.email}}">{{comment.email}}</a></td>
+            <td>{{comment.postedAt|date('d/m/Y  H:i', 'Europe/Paris')}}</td>
+            <td>{{comment.content}}</td>
+            <td>
+                <button class="btn btn-red m-1" type="button" onclick="deleteComment('{{ comment.id }}')" >Delete</button>
+            </td>
+        </tr>
+                   
+  {% endfor %}
+
+    </tbody>
+</table>

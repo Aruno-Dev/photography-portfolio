@@ -1,7 +1,18 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-        <div class="d-flex justify-content-between">
-            <a class="btn btn-primary mt-2" href="{{path('admin_album')}}">Cancel</a>
-            <input class="btn btn-success mt-2" type="submit" value="{{ submitButtonText }}" formnovalidate/>
-        </div>
+    <div class="form-group">
+       {{ form_label(form.title, 'Title', {'label_attr': {'class': 'text-dark'}}) }}
+        {{ form_widget(form.title) }}
+    </div>
+    <div class="form-group">
+         {{ form_label(form.slug, 'Slug', {'label_attr': {'class': 'text-dark'}}) }}
+        {{ form_widget(form.slug) }}
+    </div>
+    <div class="form-group">
+        {{ form_label(form.text, 'Text', {'label_attr': {'class': 'text-dark'}}) }}
+        {{ form_widget(form.text) }}
+    </div>
+    <div class="d-flex justify-content-between">
+        <a class="btn btn-blue mt-2" href="{{path('admin_album')}}">Cancel</a>
+        <input class="btn btn-green mt-2" type="submit" value="{{ submitButtonText }}" formnovalidate/>
+    </div>
 {{ form_end(form) }}

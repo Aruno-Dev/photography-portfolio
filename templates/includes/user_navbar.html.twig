@@ -16,9 +16,13 @@
                     {% endfor %}
                 </ul>
             </li>
-            <li class="nav-item"><a class="nav-link" href="{{ path('about') }}">About me</a></li>
+            <li class="nav-item"><a class="nav-link" href="{{ path('about') }}">About</a></li>
             <li class="nav-item"><a class="nav-link" href="{{ path('contact') }}">Contact me</a></li>
+            {% if app.user %}
+            <li class="nav-item"><a class="nav-link" href="{{ path('user_logout') }}">Logout</a></li>
+            {% else %}
             <li class="nav-item"><a class="nav-link" href="{{ path('user_login') }}">Login</a></li>
+            {% endif %}
         </ul>
         <!-- /.navbar-nav -->
         <div class="navbar-divider"></div>
@@ -26,8 +30,7 @@
                 <li><a href="https://www.instagram.com/aruno69/" target="_blank"><i class="fa fa-instagram"></i></a></li>
             </ul>
         </div>
-        <!-- /.navbar-collapse --> 
     </div>
-    <!-- /.container --> 
+    <!-- /.navbar-collapse --> 
 </nav>
 <!-- /.navbar -->

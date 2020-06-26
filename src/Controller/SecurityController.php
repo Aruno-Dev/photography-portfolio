@@ -18,7 +18,7 @@ class SecurityController extends AbstractController
     public function login(AuthenticationUtils $auth, AlbumRepository $albumRepo)
     {
         $albums = $albumRepo->FindAllDesc();
-        $error = $auth->getLastAuthenticationError();
+        $error  = $auth->getLastAuthenticationError();
         return $this->render('security/login.html.twig', [
         'error'      => $error,
         'albums'     => $albums,

@@ -1,0 +1,30 @@
+<table class="table table-hover">
+      <thead class="thead-dark text-center">
+           <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Author</th>
+                <th scope="col">Email</th>
+                <th scope="col">PostedAt</th>
+                <th scope="col">Content</th>
+                <th scope="col">Options</th>
+          </tr>
+      </thead>
+      <tbody>
+
+      {% for comment in image.comments %}
+
+          <tr>
+                <th scope="row">{{comment.id}}</th>
+                <td>{{comment.author}}</td>
+                <td><a href="mailto:{{comment.email}}">{{comment.email}}</a></td>
+                <td>{{comment.postedAt|date('d/m/Y  H:i', 'Europe/Paris')}}</td>
+                <td>{{comment.content}}</td>
+                <td>
+                    <button class="btn btn-red m-1" type="button" onclick="deleteImageComment('{{ comment.id }}')" >Delete</button>
+                </td>
+                </tr>
+
+      {% endfor %}
+
+      </tbody>
+</table>

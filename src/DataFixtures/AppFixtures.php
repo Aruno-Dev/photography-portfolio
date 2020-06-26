@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Project;
 use App\Entity\Admin;
+use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\Persistence\ObjectManager;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -19,8 +20,8 @@ class AppFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
 
-//table admin
-        $admin = new Admin();
+//table user
+        $admin = new User();
         $admin->setUsername('Admin');
         $admin->setPassword('admin');
         $encodedPassword = $this->passwordEncoder->encodePassword($admin, $admin->getPassword());

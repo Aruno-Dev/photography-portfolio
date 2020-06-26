@@ -1,61 +1,49 @@
-{% extends 'base.html.twig' %}
+{% extends 'admin_base.html.twig' %}
 
 {% block title %}Arnaud TERRET | Dashboard{% endblock %}
 
 {% block body %}
 
-{% include 'includes/sidebar.html.twig' %}
-        <main role="main">
-        <div class="container mt-5">
-          <h1 class="h1 text-center">Comments</h1>
-          <div class="row mt-5">
-            <div class="container text-center mx-auto">
-              <div class="row">
-              <table class="table table-hover">
-                <thead class="thead-dark text-center">
-                  <tr>
-                    <th scope="col">ID</th>
-                    <th scope="col">Album</th>
-                    <th scope="col">Image</th>
-                    <th scope="col">Author</th>
-                    <th scope="col">Email</th>
-                    <th scope="col">PostedAt</th>
-                    <th scope="col">Content</th>
-                    <th scope="col">Options</th>
-                  </tr>
+<main class="wrapper light-wrapper">
+    <h1 id="header-title">{{controller}}</h1>
+    <div class="container inner">
+        <div class="row text-center refresh_comments" id="refresh_comments">
+            <table class="table table-hover ">
+                <thead class="thead-dark">
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Album</th>
+                        <th scope="col">Image</th>
+                        <th scope="col">Author</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">PostedAt</th>
+                        <th scope="col">Content</th>
+                        <th scope="col">Options</th>
+                    </tr>
                 </thead>
                 <tbody>
 
                 {% for comment in comments %}
-               
-                    
                    
-                  <tr>
-                    <th scope="row">{{comment.id}}</th>
-                    <th scope="row"> {% if comment.album != null %}{{comment.album}}{% else %}<i class="fas fa-slash ml-3"></i> {% endif %}</th>
-                    <th scope="row"> {% if comment.image != null %}{{comment.image}}{% else %}<i class="fas fa-slash ml-3"></i>    {% endif %}</th>
-                    <td>{{comment.author}}</td>
-                    <td><a href="mailto:{{comment.email}}">{{comment.email}}</a></td>
-                    <td>{{comment.postedAt|date('d/m/Y  H:i', 'Europe/Paris')}}</td>
-                    <td>{{comment.content}}</td>
-                    <td>
-                        <form  action="{{ path('admin_comment_delete', { 'id': comment.id }) }}" method="post">
-                          <input type="hidden" name="_token" value="{{ csrf_token('secure_delete') }}"/>
-                          <button class="btn btn-danger m-1" type="submit" onclick="return confirm('Are you sure ?');" >Delete</button>
-                        </form>
-                    </td>
-                  </tr>
-                 
-                    
-                  {% endfor %}
+                    <tr>
+                        <th scope="row">{{comment.id}}</th>
+                        <th scope="row"> {% if comment.album != null %}{{comment.album}}{% else %}<i class="fas fa-slash ml-3"></i> {% endif %}</th>
+                        <th scope="row"> {% if comment.image != null %}{{comment.image}}{% else %}<i class="fas fa-slash ml-3"></i>    {% endif %}</th>
+                        <td>{{comment.author}}</td>
+                        <td><a href="mailto:{{comment.email}}">{{comment.email}}</a></td>
+                        <td>{{comment.postedAt|date('d/m/Y  H:i', 'Europe/Paris')}}</td>
+                        <td>{{comment.content}}</td>
+                        <td>
+                            <button class="btn btn-red m-1" type="button" onclick="deleteComment('{{ comment.id }}')" >Delete</button>
+                        </td>
+                    </tr>
+                   
+                {% endfor %}
 
                 </tbody>
-              </table>
-              </div>
-            </div>        
-          </div>
+            </table>
         </div>
-        </main>
-    </div>
-</div>
+    </div>        
+</main>
+   
 {% endblock %}

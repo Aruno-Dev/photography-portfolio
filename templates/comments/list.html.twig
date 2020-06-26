@@ -1,7 +1,8 @@
- {% include '/comments/forms/form.html.twig' with { type:'image'} %}
- <div id="imageCommentsList">
- 
-    {% for comment in comments %}
-       {% include 'comments/comment.html.twig' %}
-    {% endfor %}                                
- </div>
+{% include '/comments/forms/form.html.twig' with { type:'image'} %}
+   <div id="imageCommentsList">
+      
+      {% for comment in comments %}
+         {% include 'comments/comment.html.twig' %}
+      {% endfor %}  
+
+   </div>

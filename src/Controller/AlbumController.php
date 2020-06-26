@@ -22,7 +22,6 @@ class AlbumController extends AbstractController
     public function index(AlbumRepository $albumRepo)
     {
         $albums = $albumRepo->findAll();
-       
         return $this->render('album/index.html.twig', [
             'controller' => 'album',
             'albums'     => $albums,
@@ -33,14 +32,14 @@ class AlbumController extends AbstractController
      * @Route("/portfolio/{id<[0-9]+>}/show", name="portfolio_show", methods={"GET"})
      * @Route("/portfolio/{id<[0-9]+>}/show/{image}", name="portfolio_show_comment", requirements={"id" = "\d+"}, defaults={"image" = null}, methods={"GET"})
      */
-    public function show(Album $album,  AlbumRepository $albumRepo, Image $image = null)
+    public function show(Album $album, AlbumRepository $albumRepo, Image $image = null)
     {
             $albums    = $albumRepo->findAll();
             $images    = $album->getImages();
             $comments = $album->getComments();
             $comment   = new Comment();
             $comment->setAlbum($album);
-           
+            
             $collection = [];
             foreach($images as $image){
                 $comment = new Comment();
@@ -49,7 +48,6 @@ class AlbumController extends AbstractController
                     'image' => $image,
                 ];
             }
-       
         return $this->render('album/show.html.twig', [
             'controller' => 'album',
             'album'      => $album,
@@ -67,15 +65,12 @@ class AlbumController extends AbstractController
             $comment = new Comment();
             $form    = $this->createForm(CommentType::class, $comment);
             $form->submit($request->request->get('comment'), false);
-
             try{
                 $manager->persist($comment);
                 $manager->flush();
-  
                 return new JsonResponse([
                     'success' => true, 
                     'comment' =>  $this->renderView('comments/comment.html.twig', [
-
                          'comment' => $comment
                      ])
                 ]);
@@ -111,11 +106,9 @@ class AlbumController extends AbstractController
                     ->findBy([
                         $entity instanceof Album ? "album" : "image" =>  $entity
                     ]);
-
         return new JsonResponse([
             'success' => true, 
             'view'   =>  $this->renderView('comments/list.html.twig', [
-
                  'comments' => $comments,
                  'album'    => $entity instanceof Image ? $entity->getAlbum() : $entity,
                  'image'    => $entity instanceof Image ? $entity : null

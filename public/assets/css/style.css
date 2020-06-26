@@ -5628,24 +5628,7 @@ list-blue i {
     color: #e8c3b9 !important;
 }
 
-/*-----------------------------------------------------------------------------------*/
-/*	CUSTOM CSS
-/*-----------------------------------------------------------------------------------*/
-.comments p {
-    font-size: 1rem; 
-    line-height: 3rem;
-    letter-spacing: 0.3rem;
-}
 
-.clickable-link {
-    cursor: pointer;
-}
-.clickable-link span{
-    color: #ffea00;
-}
-.clickable-link span:hover{
-    color:white;
-}
 /*-----------------------------------------------------------------------------------*/
 /*	52. BOX LAYOUT
 /*-----------------------------------------------------------------------------------*/
@@ -6173,6 +6156,25 @@ list-blue i {
   }
 }
 
+/*-----------------------------------------------------------------------------------*/
+/*	CUSTOM CSS
+/*-----------------------------------------------------------------------------------*/
+.comments p {
+    font-size: 1rem; 
+    line-height: 3rem;
+    letter-spacing: 0.3rem;
+}
+
+.clickable-link {
+    cursor: pointer;
+}
+.clickable-link span{
+    color: #ffea00;
+}
+.clickable-link span:hover{
+    color:white;
+}
+
 #comments{
     position:fixed;
     width:500px;
@@ -6189,10 +6191,12 @@ list-blue i {
     overflow-y: auto;;
 }
 
-input:valid{
-    border: 2px solid white;
+#header-title{
+    font-size: 8rem;
+    text-align: center;
+    letter-spacing: 2rem;
+    margin: 70px;
+    text-shadow: 5px 5px 4px lightgrey;
+    
 }
 
-input:invalid{
-    border: 2px solid red;
-}

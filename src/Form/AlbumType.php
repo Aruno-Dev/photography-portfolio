@@ -15,7 +15,7 @@ class AlbumType extends AbstractType
             ->add('title')
             ->add('slug')
             ->add('text')
-            //->add('createdAt')
+            
         ;
     }
 

@@ -1,66 +1,43 @@
 {% extends 'user_base.html.twig' %}
 
 {% block body %}
-       
-                            
-                <!-- /.wrapper -->
+                
   <div class="wrapper light-wrapper" >
     <div class="container inner">
       <div class="row">
-      {% include 'includes/partials/_flash_messages.html.twig' %}
         <div class="col-lg-10 offset-lg-1 col-xl-8 offset-xl-2">
           <h2 class="section-title text-center" data-aos="fade-down">Contact Me</h2>
-          <p class="lead text-center" data-aos="flip-left">Feel free to get in touch for any details or inquiries. I will be pleased to answer as soon as possible !</p>
-           <div class="space20"></div>
-          <div class="row text-center">
-            <div class="col-md-4" data-aos="fade-left"> <span class="icon icon-color color-default fs-48 mb-10"><i class="si-camping_map"></i></span>
-              <p>34 rue des hérideaux<br>
-                Lyon 69008, FRANCE</p>
-            </div>
-            <!--/column -->
-            <div class="col-md-4" data-aos="fade" > <span class="icon icon-color color-default fs-48 mb-10"><i class="si-phone_phone-ringing"></i></span>
-              <p>06 11 76 41 96</p>
-            </div>
-            <!--/column -->
-            <div class="col-md-4" data-aos="fade-right"> <span class="icon icon-color color-default fs-48 mb-10"><i class="si-mail_mail-2"></i></span>
-              <p><a class="nocolor" href="mailto:arnaud.terret@gmail.com">arnaud.terret@gmail.com</a>
-               
-            </div>
-            <!--/column --> 
-          </div>
-          <!--/.row -->
-          <h1 class="text-center m-5 " data-aos="flip-right">Or<span class="lead"> m@il me here</span></h1>
           <div data-aos="zoom-in-down">
-          {{ include('home/forms/_contact_form.html.twig', {'submitButtonText': 'send'})}}
+            {{ include('home/forms/_contact_form.html.twig', {'submitButtonText': 'send'})}}
           </div>
+          <h1 class="text-center" data-aos="flip-up" >And</h1>
+          <h2 class="text-center text-dark">Do not hesitate to have a look at some more personnal stuff : </h2>
+          <p class="text-center">My
+            <a href="https://gurushots.com/aruno69/photos" title="Follow and support me here !" class="hover has-tooltip " data-placement="top" target="_blank" data-aos="zoom-in">
+              <i>
+                <img src="/assets/icons/gurushotIcon.png" alt="gurushot icon" width="18px" height="auto"/>
+              </i>  gurushot
+            </a> challenger profile
+          </p>
         </div>
         <!-- /column --> 
       </div>
       <!-- /.row --> 
     </div>
-    <!-- /.container --> 
-    <h1 class="text-center" data-aos="flip-up" >And</h1>
-     <h2 class="text-center text-dark">Do not hesitate to have a look at some more personnal stuff : </h2>
-      <div class="wrapper gray-wrapper" data-aos="zoom-in">
-    <div class="container">
-     <p class="text-center text-dark"><i class="fa fa-instagram text-dark"></i><a href="https://www.instagram.com/aruno69/" title="Follow and support me here !" class="hover has-tooltip" data-placement="top" target="_blank">  instagram</a> page</p>
-     <p class="text-center text-dark"><a href="https://gurushots.com/aruno69/photos" title="Follow and support me here too !" class="hover has-tooltip" data-placement="top" target="_blank"><i><img src="/assets/icons/gurushotIcon.png" alt="gurushot icon" width="18px" height="auto"/></i>  gurushot</a> challenger profile</p>
-    </div>
-    <!-- /.container -->
+    <!-- /.container inner--> 
+    <h1 class="text-center mt-5" data-aos="flip-down" >Or</h1>
     <div class="instagram-wrapper">
       <div class="swiper-container-wrapper">
         <div class="swiper-container swiper-instagram2">
-          <div id="instafeed4" class="swiper-wrapper"></div>
+            <div id="instafeed4" class="swiper-wrapper"></div>
         </div>
         <!-- /.swiper-container --> 
       </div>
       <!-- /.swiper-container-wrapper --> 
-      <a href="https://www.instagram.com/aruno69/" target="_blank" class="btn btn-full">Follow me @ Instagram</a> </div>
+        <a href="https://www.instagram.com/aruno69/" target="_blank" class="btn btn-full">Follow me @ Instagram</a> </div>
+    </div>
     <!-- /.instagram-wrapper --> 
   </div>
-  <!-- /.wrapper -->
-  </div>
   <!-- /.wrapper -->            
-  
         
 {% endblock %}
